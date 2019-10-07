@@ -4,9 +4,13 @@
   "rules": {
       "no-console": "off",
       "react/prefer-stateless-function": "off",
-      "react/destructuring-assignment": ["warn", "never"],
+      "react/destructuring-assignment": 0,
       "react/no-access-state-in-setstate": 0,
       "react/no-array-index-key": 0,
+      "no-case-declarations": 0,
+      "no-shadow": 0,
+      "no-use-before-define": 0,
+      "no-param-reassign": 0,
     "react/jsx-filename-extension": [
       1,
       {
