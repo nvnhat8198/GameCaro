@@ -38,15 +38,7 @@ const reducer = (state = initialState, action) => {
         squares[action.rowIndex][action.columnIndex]
       ) {
         return {
-          ...state,
-          history: history.concat([
-            {
-              squares,
-              location: { x: action.rowIndex, y: action.columnIndex }
-            }
-          ]),
-          stepNumber: history.length,
-          isDescending: state.isDescending
+          ...state
         };
       }
       squares[action.rowIndex][action.columnIndex] = state.xIsNext ? "X" : "O";
@@ -69,12 +61,10 @@ const reducer = (state = initialState, action) => {
         xIsNext: action.move % 2 === 0
       };
     case "SORT":
-      /* eslint-disable no-unused-vars */
-      // eslint-disable-next-line array-callback-return
-      let moves = state.history.map((step, move) => {});
-      state.isDescending = !state.isDescending;
-      if (!state.isDescending) moves = moves.reverse();
-      return state;
+      return {
+        ...state,
+        isDescending: !state.isDescending
+      };
     case "RESTART_GAME":
       return initialState;
     default:

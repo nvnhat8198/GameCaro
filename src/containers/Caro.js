@@ -3,29 +3,30 @@ import { connect } from "react-redux";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReplyAll, faSort } from "@fortawesome/free-solid-svg-icons";
-import { makeMove, restartGame, sort } from "../actions";
-// import Caro from '../components/Caro'
+import { makeMove, undoMove, restartGame, sort } from "../actions";
 
-import moves from "../components/moves";
+import Moves from "../components/moves";
 import Board from "../components/Board";
-// import PropTypes from 'prop-types'
 
 const width = 20;
 const height = 20;
 const squareWin = 5;
 
-// const Caro = ({notification, status, winner, current, i, j, makeMove, restartGame, sort }) => (
 class Caro extends React.Component {
   render() {
     // eslint-disable-next-line react/destructuring-assignment
     const {
+      history,
       notification,
       status,
       winner,
       current,
+      stepNumber,
+      isDescending,
       makeMove,
       restartGame,
-      sort
+      sort,
+      undoMove
     } = this.props;
     return (
       <div className="content">
@@ -63,7 +64,14 @@ class Caro extends React.Component {
                     Danh sách nước đi <FontAwesomeIcon icon={faSort} />
                   </button>
                 </div>
-                <ol>{moves}</ol>
+                <ol>
+                  <Moves
+                    history={history}
+                    stepNumber={stepNumber}
+                    isDescending={isDescending}
+                    onClick={move => undoMove(move)}
+                  />
+                </ol>
               </div>
             </div>
           </div>
@@ -249,22 +257,25 @@ function support(state) {
     status = `${state.reducer.xIsNext ? "X" : "O"}`;
     notification = "Lượt của bạn";
   }
-  // alert(state.reducer.i, state.reducer.j);
   return { status, notification, winner };
 }
 
 const mapStateToProps = state => ({
+  history: state.reducer.history,
   notification: support(state).notification,
   status: support(state).status,
   winner: support(state).winner,
-  current: state.reducer.history[state.reducer.stepNumber].squares
+  current: state.reducer.history[state.reducer.stepNumber].squares,
+  stepNumber: state.reducer.stepNumber,
+  isDescending: state.reducer.isDescending
 });
 
 const mapDispatchToProps = dispatch => ({
   makeMove: (rowIndex, columnIndex) =>
     dispatch(makeMove(rowIndex, columnIndex)),
   restartGame: () => dispatch(restartGame()),
-  sort: () => dispatch(sort())
+  sort: () => dispatch(sort()),
+  undoMove: move => dispatch(undoMove(move))
 });
 
 export default connect(
