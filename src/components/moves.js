@@ -13,7 +13,7 @@ class moves extends React.Component {
         <li key={move} className="bold">
           <button
             type="button"
-            className="btn-bold"
+            className="button-bold"
             onClick={() => onClick(move)}
           >
             {desc}
@@ -21,7 +21,7 @@ class moves extends React.Component {
         </li>
       ) : (
         <li key={move}>
-          <button type="button" className="btn" onClick={() => onClick(move)}>
+          <button type="button" className="button" onClick={() => onClick(move)}>
             {desc}
           </button>
         </li>

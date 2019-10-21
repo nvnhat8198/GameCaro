@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import Caro from "./containers/Caro";
+import rootReducer from "./reducers";
+import "./index.css";
 
-function App() {
+import Login from './login/Login';
+import Register from './register/Register';
+import Profile from './profile/Profile';
+import Doashboard from './Dashboard';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Switch>
+          <Route path="/login" exact component={Login} />
+          <Route path="/register" exact component={Register} />
+          <Route path="/profile" exact component={Profile} />
+          <Route path="/caro">
+            <GameCaro/>
+          </Route>
+          <Route path="/" exact component={Doashboard} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
-export default App;
+function GameCaro() {
+  const store = createStore(rootReducer);
+  return(
+    <Provider store={store}>
+         <Caro />
+       </Provider>
+  )
+}

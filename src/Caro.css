@@ -1,7 +1,6 @@
 body {
     font: 14px "Century Gothic", Futura, sans-serif;
     margin: 15px;
-    background-image: url("./img.jpg");
 }
 
 .title{
@@ -82,11 +81,11 @@ body {
     color: #d11401;
 }
 
-.square:focus, .btnReplay:focus, .sort:focus,.btn:focus,.btn-bold:focus {
+.square:focus, .btnReplay:focus, .sort:focus,.button:focus,.button-bold:focus {
     outline: none;
 }
 
-.btnReplay:hover, .sort:hover, .btn-bold:hover, .btn:hover{
+.btnReplay:hover, .sort:hover, .button-bold:hover, .button:hover{
   cursor: pointer;
   color: #801208;
 }
@@ -116,7 +115,7 @@ ol{
   font-weight: bold;
 }
 
-.btn {
+.button {
   background-color: rgb(116, 230, 116);
   color: #d11401;
   font-family: "Comic Sans MS", cursive, sans-serif;
@@ -126,14 +125,14 @@ ol{
   width: 175px;
 }
 
-.btn-bold {
+.button-bold {
   background-color: rgb(116, 230, 116);
   color: #d11401;
   font-family: "Comic Sans MS", cursive, sans-serif;
   border: 2px solid rgb(13, 175, 13);
   border-radius: 25px;
   padding: 2px 0px;
-  font-weight: bold;
+  /* font-weight: bold; */
   width: 175px;
 }
 
