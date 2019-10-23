@@ -1,52 +1,84 @@
-import React from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
+import React, { useState } from "react";
+import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
+import "./Register.css";
+// eslint-disable-next-line import/imports-first
+import axios from "axios";
 
-const Register = () => {
+// eslint-disable-next-line no-unused-vars
+export default function Register(props) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [fullname, setFullname] = useState("");
+
+  function validateForm() {
+    return email.length > 0 && password.length > 0 && fullname.length > 0;
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    axios({
+      method: "post",
+      url: "http://localhost:3001/user/register",
+      data: {
+        FullName: fullname,
+        Email: email,
+        Password: password
+      }
+    })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+        // eslint-disable-next-line no-alert
+        alert(res.data);
+      })
+      .catch(err => {
+        // eslint-disable-next-line no-alert
+        alert("Đăng kí không lỗi!");
+        console.log(err);
+      });
+  }
+
   return (
-    <MDBContainer>
-      <MDBRow>
-        <MDBCol md="6">
-          <form>
-            <p className="h4 text-center mb-4">Sign up</p>
-            <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
-              Your name
-            </label>
-            <input
-              type="text"
-              id="defaultFormRegisterNameEx"
-              className="form-control"
-            />
-            <br />
-            <label htmlFor="defaultFormRegisterEmailEx" className="grey-text">
-              Your email
-            </label>
-            <input
-              type="email"
-              id="defaultFormRegisterEmailEx"
-              className="form-control"
-            />
-            <br />
-            <label
-              htmlFor="defaultFormRegisterPasswordEx"
-              className="grey-text"
-            >
-              Your password
-            </label>
-            <input
-              type="password"
-              id="defaultFormRegisterPasswordEx"
-              className="form-control"
-            />
-            <div className="text-center mt-4">
-              <MDBBtn color="unique" type="submit">
-                Register
-              </MDBBtn>
-            </div>
-          </form>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
+    <div className="Login">
+      <div className="titleLogin">
+        <label className="titleLogin">Register</label>
+      </div>
+      <form onSubmit={handleSubmit}>
+        <FormGroup controlId="fullname">
+          <FormLabel>Fullname</FormLabel>
+          <FormControl
+            autoFocus
+            value={fullname}
+            onChange={e => setFullname(e.target.value)}
+            type="fullname"
+          />
+        </FormGroup>
+        <FormGroup controlId="email">
+          <FormLabel>Email</FormLabel>
+          <FormControl
+            type="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+        </FormGroup>
+        <FormGroup controlId="password">
+          <FormLabel>Password</FormLabel>
+          <FormControl
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            type="password"
+          />
+        </FormGroup>
+        <Button block disabled={!validateForm()} type="submit">
+          Register
+        </Button>
+      </form>
+      <div className="link">
+        <a href="/login">Login</a>
+      </div>
+      <div className="link">
+        <a href="/">Doashboard</a>
+      </div>
+    </div>
   );
-};
-
-export default Register;
+}

@@ -4,9 +4,13 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-free": "^5.11.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.22",
     "@fortawesome/free-solid-svg-icons": "^5.10.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "antd": "^3.24.2",
+    "axios": "^0.19.0",
+    "bootstrap-css-only": "^4.3.1",
     "mdbreact": "^4.21.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
@@ -15,13 +19,16 @@
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.1",
-    "redux": "^4.0.4"
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "fix": "eslint src/ --fix"
   },
   "eslintConfig": {
     "extends": "react-app"

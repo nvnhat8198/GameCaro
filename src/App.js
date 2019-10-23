@@ -1,20 +1,15 @@
 import React from "react";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import Caro from "./containers/Caro";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import rootReducer from "./reducers";
 import "./index.css";
 
-import Login from './login/Login';
-import Register from './register/Register';
-import Profile from './profile/Profile';
-import Doashboard from './Dashboard';
-
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import Doashboard from "./Dashboard";
+import Login from "./login/Login";
+import Register from "./register/Register";
+import Profile from "./profile/Profile";
+import Caro from "./containers/Caro";
 
 export default function App() {
   return (
@@ -25,7 +20,7 @@ export default function App() {
           <Route path="/register" exact component={Register} />
           <Route path="/profile" exact component={Profile} />
           <Route path="/caro">
-            <GameCaro/>
+            <GameCaro />
           </Route>
           <Route path="/" exact component={Doashboard} />
         </Switch>
@@ -36,9 +31,9 @@ export default function App() {
 
 function GameCaro() {
   const store = createStore(rootReducer);
-  return(
+  return (
     <Provider store={store}>
-         <Caro />
-       </Provider>
-  )
+      <Caro />
+    </Provider>
+  );
 }
