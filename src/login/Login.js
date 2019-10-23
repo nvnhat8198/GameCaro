@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
 // eslint-disable-next-line import/imports-first
@@ -32,12 +33,19 @@ export default function Login(props) {
         alert("Đăng nhập thành công!");
         console.log(res);
         console.log(res.data.token);
+        localStorage.setItem("fullname", res.data.user.FullName);
+        window.location.reload();
       })
       .catch(err => {
         // eslint-disable-next-line no-alert
         alert("Đăng nhập không thành công!");
         console.log(err);
       });
+  }
+
+  const user = localStorage.getItem("fullname");
+  if (user) {
+    return <Redirect to="/" />;
   }
   return (
     <div className="Login">
