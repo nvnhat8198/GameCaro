@@ -20,7 +20,8 @@ export default function Login(props) {
     event.preventDefault();
     axios({
       method: "post",
-      url: "http://localhost:3001/user/login",
+      url: "https://api-1612457.herokuapp.com/user/login",
+      // url: "http://localhost:3001/user/login",
       data: {
         Email: email,
         Password: password
@@ -69,94 +70,8 @@ export default function Login(props) {
         <a href="/register">Register</a>
       </div>
       <div className="link">
-        <a href="/">Doashboard</a>
+        <a href="/">Index</a>
       </div>
     </div>
   );
 }
-
-// import React from 'react'
-// import { Form, Icon, Input, Button, Checkbox } from 'antd';
-// import { Link, Redirect } from 'react-router-dom'
-// import axios from 'axios'
-// class NormalLoginForm extends React.Component {
-//   renderRedirect = () => {
-//       return <Redirect to='/home' />
-//   }
-//   handleSubmit = e => {
-//     e.preventDefault();
-//     this.props.form.validateFields((err, values) => {
-//       if (!err) {
-//         axios({
-//           method: 'post',
-//           url: 'http://localhost:3000/user/login',
-//           data: {
-//             Email: values.email,
-//             Password: values.password
-//           }
-//         })
-//         .then(res=>{
-//           console.log(res)
-//           if(res.data){
-//             this.renderRedirect()
-//           }
-//           else{
-//             alert("tai khoan")
-//           }
-//         })
-//         .catch(err=>{
-//           console.log(err)
-//         })
-//       }
-//     });
-//   };
-
-//   render() {
-//     const { getFieldDecorator } = this.props.form;
-//     return (
-//       <div className="login">
-//         <Form onSubmit={this.handleSubmit} className="login-form">
-//         <h2>Login</h2>
-//           <Form.Item>
-//             {getFieldDecorator('email', {
-//               rules: [{ required: true, message: 'Please input your username!' }],
-//             })(
-//               <Input
-//                 prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-//                 placeholder="Email"
-//               />,
-//             )}
-//           </Form.Item>
-//           <Form.Item>
-//             {getFieldDecorator('password', {
-//               rules: [{ required: true, message: 'Please input your Password!' }],
-//             })(
-//               <Input
-//                 prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-//                 type="password"
-//                 placeholder="Password"
-//               />,
-//             )}
-//           </Form.Item>
-//           <Form.Item>
-//             {getFieldDecorator('remember', {
-//               valuePropName: 'checked',
-//               initialValue: true,
-//             })(<Checkbox>Remember me</Checkbox>)}
-//             <a className="login-form-forgot" href="#">
-//               Forgot password
-//           </a>
-//             <Button type="primary" htmlType="submit" className="login-form-button">
-//               Log in
-//           </Button>
-//             Or
-//             <Link to='/register'> register now!</Link>
-//           </Form.Item>
-//         </Form>
-//         </div>
-//     );
-//   }
-// }
-
-// const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(NormalLoginForm);
-// export default WrappedNormalLoginForm

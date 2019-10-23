@@ -18,7 +18,8 @@ export default function Register(props) {
     event.preventDefault();
     axios({
       method: "post",
-      url: "http://localhost:3001/user/register",
+      url: "https://api-1612457.herokuapp.com/user/register",
+      // url: "http://localhost:3001/user/register",
       data: {
         FullName: fullname,
         Email: email,
@@ -77,7 +78,7 @@ export default function Register(props) {
         <a href="/login">Login</a>
       </div>
       <div className="link">
-        <a href="/">Doashboard</a>
+        <a href="/">Index</a>
       </div>
     </div>
   );
