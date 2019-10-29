@@ -1,7 +1,15 @@
 import React, { useState } from "react";
-import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
+import {
+  Button,
+  FormGroup,
+  FormControl,
+  FormLabel,
+  Card
+} from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import "./Login.css";
 // eslint-disable-next-line import/imports-first
 import "bootstrap-css-only/css/bootstrap.min.css";
@@ -21,8 +29,7 @@ export default function Login(props) {
     event.preventDefault();
     axios({
       method: "post",
-      url: "https://api-1612457.herokuapp.com/user/login",
-      // url: "http://localhost:3001/user/login",
+      url: "http://localhost:3001/user/login",
       data: {
         Email: email,
         Password: password
@@ -34,7 +41,51 @@ export default function Login(props) {
         console.log(res);
         console.log(res.data.token);
         localStorage.setItem("fullname", res.data.user.FullName);
+        localStorage.setItem("email", res.data.user.Email);
+        localStorage.setItem("id", res.data.user.ID);
         window.location.reload();
+      })
+      .catch(err => {
+        // eslint-disable-next-line no-alert
+        alert("Đăng nhập không thành công!");
+        console.log(err);
+      });
+  }
+
+  function loginFB() {
+    axios({
+      method: "get",
+      url: "http://localhost:3001/auth/facebook/"
+    })
+      .then(res => {
+        // eslint-disable-next-line no-alert
+        alert("Đăng nhập thành công!");
+        console.log(res);
+        console.log(res.data.token);
+        localStorage.setItem("fullname", res.data.user.FullName);
+        localStorage.setItem("email", "Không có");
+        localStorage.setItem("id", res.data.user.ID);
+        // window.location.reload();
+      })
+      .catch(err => {
+        // eslint-disable-next-line no-alert
+        alert("Đăng nhập không thành công!");
+        console.log(err);
+      });
+  }
+
+  function loginGG() {
+    axios({
+      method: "get",
+      url: "http://localhost:3001/auth/facebook"
+    })
+      .then(res => {
+        // eslint-disable-next-line no-alert
+        alert("Đăng nhập thành công!");
+        console.log(res);
+        console.log(res.data.token);
+        // localStorage.setItem("fullname", res.data.user.FullName);
+        // window.location.reload();
       })
       .catch(err => {
         // eslint-disable-next-line no-alert
@@ -48,38 +99,54 @@ export default function Login(props) {
     return <Redirect to="/" />;
   }
   return (
-    <div className="Login">
-      <div className="titleLogin">
-        <label className="titleLogin">Login</label>
+    <Card border="primary">
+      <div className="Login">
+        <div className="titleLogin">
+          <label className="titleLogin">Đăng nhập</label>
+        </div>
+        <form onSubmit={handleSubmit}>
+          <FormGroup controlId="email">
+            <FormLabel>Email</FormLabel>
+            <FormControl
+              autoFocus
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+          </FormGroup>
+          <FormGroup controlId="password">
+            <FormLabel>Password</FormLabel>
+            <FormControl
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              type="password"
+            />
+          </FormGroup>
+          <Button
+            block
+            variant="outline-primary"
+            disabled={!validateForm()}
+            type="submit"
+          >
+            Đăng nhập
+          </Button>
+        </form>
+        <div className="link">
+          <button className="iconFB" onClick={loginFB}>
+            <FontAwesomeIcon icon={faFacebookF} />
+          </button>
+          <button className="iconGG" onClick={loginGG}>
+            <FontAwesomeIcon icon={faGoogle} />
+          </button>
+        </div>
+
+        <div className="link">
+          <a href="/register">Đăng kí</a>
+        </div>
+        <div className="link">
+          <a href="/">Home</a>
+        </div>
       </div>
-      <form onSubmit={handleSubmit}>
-        <FormGroup controlId="email">
-          <FormLabel>Email</FormLabel>
-          <FormControl
-            autoFocus
-            type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup controlId="password">
-          <FormLabel>Password</FormLabel>
-          <FormControl
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            type="password"
-          />
-        </FormGroup>
-        <Button block disabled={!validateForm()} type="submit">
-          Login
-        </Button>
-      </form>
-      <div className="link">
-        <a href="/register">Register</a>
-      </div>
-      <div className="link">
-        <a href="/">Index</a>
-      </div>
-    </div>
+    </Card>
   );
 }

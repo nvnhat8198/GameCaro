@@ -1,20 +1,21 @@
 import React from "react";
+import { Card } from "react-bootstrap";
 import "./Doashboard.css";
 
 const Doashboard = () => {
   const check = localStorage.getItem("fullname") ? (
     <div className="doashboard">
-      <h1>welcome</h1>
+      <h1 className="titleGame">Caro Online</h1>
       <button type="button" className="btnDoashboard">
-        <a href="/profile">Trang chủ</a>
+        <a href="/profile">Thông tin cá nhân</a>
       </button>
       <button type="button" className="btnDoashboard">
-        <a href="/caro">Game Caro</a>
+        <a href="/caro">Game Caro vs Máy</a>
       </button>
     </div>
   ) : (
     <div className="doashboard">
-      <h1>welcome</h1>
+      <h1 className="titleGame">Caro Online</h1>
       <button type="button" className="btnDoashboard">
         <a href="/login">Đăng nhập</a>
       </button>
@@ -24,7 +25,9 @@ const Doashboard = () => {
     </div>
   );
   return (
-    <div>{check}</div>
+    <Card border="primary">
+      <div>{check}</div>
+    </Card>
     // <div className="doashboard">
     //   <h1>welcome</h1>
     //   <button type="button" className="btnDoashboard">

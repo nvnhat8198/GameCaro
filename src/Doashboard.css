@@ -3,12 +3,17 @@
   margin: 200px 0px;
 }
 
+.titleGame {
+  color: rgb(94, 94, 175);
+}
+
 .btnDoashboard {
   margin: 10px;
   padding: 5px;
   border: solid 1px black;
   background: white;
-  width: 120px;
+  width: 150px;
+  height: 40px;
 }
 
 .btnDoashboard:hover {

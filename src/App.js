@@ -1,7 +1,12 @@
 import React from "react";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import { BrowserRouter as Router, Switch, Route , Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 
 import rootReducer from "./reducers";
 import "./index.css";
@@ -10,6 +15,7 @@ import Login from "./login/Login";
 import Register from "./register/Register";
 import Profile from "./profile/Profile";
 import Caro from "./containers/Caro";
+import ChangePassword from "./changePassword/ChangePassword";
 
 export default function App() {
   return (
@@ -19,6 +25,7 @@ export default function App() {
           <Route path="/login" exact component={Login} />
           <Route path="/register" exact component={Register} />
           <Route path="/profile" exact component={Profile} />
+          <Route path="/changepassword" exact component={ChangePassword} />
           <Route path="/caro">
             <GameCaro />
           </Route>
@@ -38,7 +45,6 @@ function GameCaro() {
         <Caro />
       </Provider>
     );
-  } 
-    return <Redirect to="/" />;
-  
+  }
+  return <Redirect to="/" />;
 }

@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
+import {
+  Button,
+  FormGroup,
+  FormControl,
+  FormLabel,
+  Card
+} from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import "./Register.css";
 // eslint-disable-next-line import/imports-first
@@ -18,8 +24,7 @@ export default function Register(props) {
     event.preventDefault();
     axios({
       method: "post",
-      url: "https://api-1612457.herokuapp.com/user/register",
-      // url: "http://localhost:3001/user/register",
+      url: "http://localhost:3001/user/register",
       data: {
         FullName: fullname,
         Email: email,
@@ -53,46 +58,53 @@ export default function Register(props) {
   }
 
   return (
-    <div className="Login">
-      <div className="titleLogin">
-        <label className="titleLogin">Register</label>
+    <Card border="primary">
+      <div className="Login">
+        <div className="titleLogin">
+          <label className="titleLogin">Đăng kí</label>
+        </div>
+        <form onSubmit={handleSubmit}>
+          <FormGroup controlId="fullname">
+            <FormLabel>Fullname</FormLabel>
+            <FormControl
+              autoFocus
+              value={fullname}
+              onChange={e => setFullname(e.target.value)}
+              type="fullname"
+            />
+          </FormGroup>
+          <FormGroup controlId="email">
+            <FormLabel>Email</FormLabel>
+            <FormControl
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+          </FormGroup>
+          <FormGroup controlId="password">
+            <FormLabel>Password</FormLabel>
+            <FormControl
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              type="password"
+            />
+          </FormGroup>
+          <Button
+            block
+            variant="outline-primary"
+            disabled={!validateForm()}
+            type="submit"
+          >
+            Đăng kí
+          </Button>
+        </form>
+        <div className="link">
+          <a href="/login">Đăng nhập</a>
+        </div>
+        <div className="link">
+          <a href="/">Home</a>
+        </div>
       </div>
-      <form onSubmit={handleSubmit}>
-        <FormGroup controlId="fullname">
-          <FormLabel>Fullname</FormLabel>
-          <FormControl
-            autoFocus
-            value={fullname}
-            onChange={e => setFullname(e.target.value)}
-            type="fullname"
-          />
-        </FormGroup>
-        <FormGroup controlId="email">
-          <FormLabel>Email</FormLabel>
-          <FormControl
-            type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup controlId="password">
-          <FormLabel>Password</FormLabel>
-          <FormControl
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            type="password"
-          />
-        </FormGroup>
-        <Button block disabled={!validateForm()} type="submit">
-          Register
-        </Button>
-      </form>
-      <div className="link">
-        <a href="/login">Login</a>
-      </div>
-      <div className="link">
-        <a href="/">Index</a>
-      </div>
-    </div>
+    </Card>
   );
 }

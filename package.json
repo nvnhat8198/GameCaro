@@ -6,6 +6,7 @@
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-free": "^5.11.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.22",
+    "@fortawesome/free-brands-svg-icons": "^5.11.2",
     "@fortawesome/free-solid-svg-icons": "^5.10.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "antd": "^3.24.2",
@@ -14,6 +15,7 @@
     "mdbreact": "^4.21.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
+    "react-avatar-edit": "^0.8.3",
     "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.1",
@@ -27,7 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "fix": "eslint src/ --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
