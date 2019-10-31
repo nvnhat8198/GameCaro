@@ -17,4 +17,14 @@
   .a-center {
     text-align: center;
   }
+
+  .imgAvatar {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .imgAvatar img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
 }

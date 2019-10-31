@@ -18,12 +18,14 @@
     "react-avatar-edit": "^0.8.3",
     "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.9.0",
+    "react-image-file-resizer": "^0.2.1",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.1",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "resize-base64": "^1.0.12"
   },
   "scripts": {
     "start": "react-scripts start",

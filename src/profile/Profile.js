@@ -9,10 +9,10 @@ import {
 } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCog } from "@fortawesome/free-solid-svg-icons";
+import { faUserCog, faCogs } from "@fortawesome/free-solid-svg-icons";
 import "./Profile.css";
 
-// import Avatar from 'react-avatar-edit'
+import logo from "../images/avatar-default.jpg";
 
 // eslint-disable-next-line no-unused-vars
 export default function Profile(props) {
@@ -27,40 +27,57 @@ export default function Profile(props) {
     localStorage.removeItem("fullname");
     localStorage.removeItem("email");
     localStorage.removeItem("id");
+    localStorage.removeItem("avatar");
     window.location.reload();
   }
 
-  function validateForm() {
-    return email.length > 0 && fullname.length > 0;
-  }
+  // function abc(){
+  //   console.log(email)
+  // }
 
+  function validateForm() {
+    if (email.length > 0 && fullname.length > 0) {
+      return true;
+    }
+    // return  (email.length>0 && fullname.length>0);
+  }
   const user = localStorage.getItem("fullname");
   if (!user) {
     return <Redirect to="/" />;
   }
 
+  const img = localStorage.getItem("avatar");
+  function hiddenImg() {
+    if (img !== "" && img !== "null") return true;
+  }
+  const avatar =
+    img === "" || img === "null" ? (
+      <div hidden />
+    ) : (
+      <div hidden={!hiddenImg()} className="imgAvatar">
+        <img src={img} alt="logo" />
+      </div>
+    );
   return (
     <Card border="primary">
       <div className="Login">
         <div className="titleLogin">
           <label className="titleLogin">Thông tin cá nhân</label>
         </div>
+        <div hidden={hiddenImg()} className="imgAvatar">
+          <img src={logo} alt="logo" />
+        </div>
+        {avatar}
 
-        {/* <div className="a-center">
-        <Avatar
-          width={150}
-          height={150}
-          // onCrop={this.onCrop}
-          // onClose={this.onClose}
-          // src={this.state.src}
-        />
-      </div> */}
-
+        <div className="link">
+          <a href="/changeavatar">
+            <FontAwesomeIcon icon={faCogs} /> Đổi Avatar
+          </a>
+        </div>
         <form onSubmit={handleSubmit}>
           <FormLabel>Fullname</FormLabel>
           <FormGroup controlId="fullname">
             <FormControl
-              // value={fullname}
               defaultValue={a}
               onChange={e => setFullname(e.target.value)}
               type="fullname"
@@ -69,7 +86,6 @@ export default function Profile(props) {
           <FormLabel>Email</FormLabel>
           <FormGroup controlId="email">
             <FormControl
-              // value={email}
               defaultValue={b}
               onChange={e => setEmail(e.target.value)}
               type="email"
@@ -77,8 +93,9 @@ export default function Profile(props) {
           </FormGroup>
 
           <Navbar.Text>
-            <FontAwesomeIcon icon={faUserCog} />
-            <a href="/changepassword"> Đổi mật khẩu</a>
+            <a href="/changepassword">
+              <FontAwesomeIcon icon={faUserCog} /> Đổi mật khẩu
+            </a>
           </Navbar.Text>
 
           <Button
@@ -86,6 +103,7 @@ export default function Profile(props) {
             variant="outline-primary"
             disabled={!validateForm()}
             type="button"
+            // onClick={abc}
           >
             Lưu thay đổi
           </Button>

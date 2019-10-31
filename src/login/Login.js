@@ -43,6 +43,7 @@ export default function Login(props) {
         localStorage.setItem("fullname", res.data.user.FullName);
         localStorage.setItem("email", res.data.user.Email);
         localStorage.setItem("id", res.data.user.ID);
+        localStorage.setItem("avatar", res.data.user.Avatar);
         window.location.reload();
       })
       .catch(err => {

@@ -16,6 +16,7 @@ import Register from "./register/Register";
 import Profile from "./profile/Profile";
 import Caro from "./containers/Caro";
 import ChangePassword from "./changePassword/ChangePassword";
+import ChangeAvatar from "./changePassword/ChangeAvatar";
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="/register" exact component={Register} />
           <Route path="/profile" exact component={Profile} />
           <Route path="/changepassword" exact component={ChangePassword} />
+          <Route path="/changeavatar" exact component={ChangeAvatar} />
           <Route path="/caro">
             <GameCaro />
           </Route>
