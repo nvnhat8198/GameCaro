@@ -2,7 +2,11 @@
 import { connect } from "react-redux";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faReplyAll, faSort } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSyncAlt,
+  faSort,
+  faBackward
+} from "@fortawesome/free-solid-svg-icons";
 import { makeMove, undoMove, restartGame, sort } from "../actions";
 
 import Moves from "../components/moves";
@@ -30,7 +34,7 @@ class Caro extends React.Component {
     } = this.props;
     return (
       <div className="content">
-        <div className="title">Game Caro VN</div>
+        <div className="title">Game Caro</div>
         <div className="game">
           <div className="box-left">
             <div className="game-info">
@@ -42,8 +46,13 @@ class Caro extends React.Component {
                   className="btnReplay"
                   onClick={restartGame}
                 >
-                  <FontAwesomeIcon icon={faReplyAll} /> Chơi lại
+                  <FontAwesomeIcon icon={faSyncAlt} /> Chơi lại
                 </button>
+              </div>
+              <div className="linkBack">
+                <a href="/">
+                  <FontAwesomeIcon icon={faBackward} /> Trở về
+                </a>
               </div>
             </div>
           </div>

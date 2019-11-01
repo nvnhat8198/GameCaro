@@ -8,6 +8,8 @@ import {
   Card
 } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
+import { useAlert } from "react-alert";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCog, faCogs } from "@fortawesome/free-solid-svg-icons";
 import "./Profile.css";
@@ -16,14 +18,51 @@ import logo from "../images/avatar-default.jpg";
 
 // eslint-disable-next-line no-unused-vars
 export default function Profile(props) {
-  const [email, setEmail] = useState("");
-  const [fullname, setFullname] = useState("");
-
   const a = localStorage.getItem("fullname") || "";
   const b = localStorage.getItem("email") || "";
+  const [email, setEmail] = useState(b);
+  const [fullname, setFullname] = useState(a);
+
+  function validateForm() {
+    return email.length > 0 && fullname.length > 0;
+  }
+  const alert = useAlert();
 
   function handleSubmit(event) {
     event.preventDefault();
+    axios({
+      method: "post",
+      url: "http://localhost:3001/changeinfo",
+      data: {
+        ID: localStorage.getItem("id"),
+        FullName: fullname,
+        Email: email
+      }
+    })
+      .then(res => {
+        console.log(res);
+        // eslint-disable-next-line no-alert
+        if (res.data === "Cập nhật thông tin thành công!") {
+          localStorage.removeItem("fullname");
+          localStorage.removeItem("email");
+          localStorage.removeItem("id");
+          localStorage.removeItem("avatar");
+          // eslint-disable-next-line no-alert
+          alert.success("Cập nhật thành công, về trang chủ!");
+          setTimeout(window.location.reload.bind(window.location), 2500);
+        } else {
+          // eslint-disable-next-line no-alert
+          alert.show(res.data);
+        }
+      })
+      .catch(err => {
+        // eslint-disable-next-line no-alert
+        alert.show("Đã xảy ra lỗi");
+        console.log(err);
+      });
+  }
+
+  function logout() {
     localStorage.removeItem("fullname");
     localStorage.removeItem("email");
     localStorage.removeItem("id");
@@ -31,16 +70,6 @@ export default function Profile(props) {
     window.location.reload();
   }
 
-  // function abc(){
-  //   console.log(email)
-  // }
-
-  function validateForm() {
-    if (email.length > 0 && fullname.length > 0) {
-      return true;
-    }
-    // return  (email.length>0 && fullname.length>0);
-  }
   const user = localStorage.getItem("fullname");
   if (!user) {
     return <Redirect to="/" />;
@@ -78,7 +107,7 @@ export default function Profile(props) {
           <FormLabel>Fullname</FormLabel>
           <FormGroup controlId="fullname">
             <FormControl
-              defaultValue={a}
+              value={fullname}
               onChange={e => setFullname(e.target.value)}
               type="fullname"
             />
@@ -86,7 +115,7 @@ export default function Profile(props) {
           <FormLabel>Email</FormLabel>
           <FormGroup controlId="email">
             <FormControl
-              defaultValue={b}
+              value={email}
               onChange={e => setEmail(e.target.value)}
               type="email"
             />
@@ -102,13 +131,17 @@ export default function Profile(props) {
             block
             variant="outline-primary"
             disabled={!validateForm()}
-            type="button"
-            // onClick={abc}
+            type="submit"
           >
             Lưu thay đổi
           </Button>
 
-          <Button block variant="outline-secondary" type="submit">
+          <Button
+            block
+            variant="outline-secondary"
+            type="button"
+            onClick={logout}
+          >
             Đăng xuất
           </Button>
         </form>

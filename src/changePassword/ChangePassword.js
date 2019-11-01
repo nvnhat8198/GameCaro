@@ -7,6 +7,7 @@ import {
   Card
 } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
+import { useAlert } from "react-alert";
 import "./ChangePassword.css";
 // eslint-disable-next-line import/imports-first
 import axios from "axios";
@@ -24,6 +25,8 @@ export default function ChangePassword(props) {
       newPassword === confPassword
     );
   }
+  const alert = useAlert();
+
   function handleSubmit(event) {
     event.preventDefault();
     axios({
@@ -37,23 +40,24 @@ export default function ChangePassword(props) {
     })
       .then(res => {
         console.log(res);
-        console.log(res.data);
+        // console.log(res.data);
         // eslint-disable-next-line no-alert
         if (res.data === "Đổi mật khẩu thành công!") {
           localStorage.removeItem("fullname");
           localStorage.removeItem("email");
           localStorage.removeItem("id");
+          localStorage.removeItem("avatar");
           // eslint-disable-next-line no-alert
-          alert("Đổi mật khẩu thành công, trở về trang chủ!");
-          window.location.reload();
+          alert.success("Đổi mật khẩu thành công, về trang chủ!");
+          setTimeout(window.location.reload.bind(window.location), 2500);
         } else {
           // eslint-disable-next-line no-alert
-          alert(res.data);
+          alert.show(res.data);
         }
       })
       .catch(err => {
         // eslint-disable-next-line no-alert
-        alert("Đã xảy ra lỗi");
+        alert.show("Đã xảy ra lỗi");
         console.log(err);
       });
   }

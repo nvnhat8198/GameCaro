@@ -7,6 +7,7 @@ import {
   Card
 } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
+import { useAlert } from "react-alert";
 import "./Register.css";
 // eslint-disable-next-line import/imports-first
 import axios from "axios";
@@ -20,6 +21,9 @@ export default function Register(props) {
   function validateForm() {
     return email.length > 0 && password.length > 0 && fullname.length > 0;
   }
+
+  const alert = useAlert();
+
   function handleSubmit(event) {
     event.preventDefault();
     axios({
@@ -35,15 +39,15 @@ export default function Register(props) {
         console.log(res);
         console.log(res.data);
         // eslint-disable-next-line no-alert
-        alert(res.data);
+        alert.success(res.data);
         if (res.data === "Đăng kí thành công!") {
           localStorage.setItem("RegisterSuccess", "RegisterSuccess");
-          window.location.reload();
+          setTimeout(window.location.reload.bind(window.location), 3000);
         }
       })
       .catch(err => {
         // eslint-disable-next-line no-alert
-        alert("Đăng kí lỗi!");
+        alert.show("Đăng kí lỗi!");
         console.log(err);
       });
   }

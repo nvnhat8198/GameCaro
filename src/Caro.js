@@ -221,10 +221,9 @@ class Caro extends React.Component {
       status = `${this.state.xIsNext ? "X" : "O"}`;
       notification = "Lượt của bạn";
     }
-
     return (
       <div className="content">
-        <div className="title">Game Caro VN</div>
+        <div className="title">Game Caro</div>
         <div className="game">
           <div className="box-left">
             <div className="game-info">

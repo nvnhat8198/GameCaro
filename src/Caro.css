@@ -1,12 +1,12 @@
 body {
-    font: 14px "Century Gothic", Futura, sans-serif;
-    margin: 15px;
+  font: 14px "Century Gothic", Futura, sans-serif;
+  margin: 15px;
 }
 
-.title{
+.title {
   font-size: 3em;
   margin-bottom: 10px;
-  font-family:initial;
+  font-family: initial;
   font-weight: bold;
   font-family: "Comic Sans MS", cursive, sans-serif;
   color: #d11401;
@@ -22,16 +22,16 @@ body {
   color: #d11401;
 }
 
-.mg-t-30{
+.mg-t-30 {
   margin-top: 30px;
 }
 
-.replay{
+.replay {
   text-align: center;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
-.btnReplay{
+.btnReplay {
   background-color: rgb(116, 230, 116);
   color: #d11401;
   font-size: 2em;
@@ -42,58 +42,65 @@ body {
   border: 2px solid rgb(13, 175, 13);
 }
 
-.box{
+.box {
   border: 7px solid #d11401;
 }
 
-.box-left{
+.box-left {
   border: 5px solid #d11401;
   margin: 100px 20px 0px 0px;
-  height: 300px;
+  height: 310px;
   width: 250px;
   background: #fff;
 }
 
-.box-right{
+.box-right {
   border: 5px solid #d11401;
-  height: 300px;
+  height: 310px;
   width: 250px;
   margin: 100px 0px 0px 20px;
   background: #fff;
 }
 
 .board-row:after {
-    clear: both;
-    content: "";
-    display: table;
+  clear: both;
+  content: "";
+  display: table;
 }
 
 .square {
-    background: #fff;
-    border: 1px solid rgb(196, 193, 193);
-    float: left;
-    font-weight: bold;
-    height: 25px;
-    padding: 0;
-    text-align: center;
-    width: 25px;
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    color: #d11401;
+  background: #fff;
+  border: 1px solid rgb(196, 193, 193);
+  float: left;
+  font-weight: bold;
+  height: 25px;
+  padding: 0;
+  text-align: center;
+  width: 25px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  color: #d11401;
 }
 
-.square:focus, .btnReplay:focus, .sort:focus,.button:focus,.button-bold:focus {
-    outline: none;
+.square:focus,
+.btnReplay:focus,
+.sort:focus,
+.button:focus,
+.button-bold:focus {
+  outline: none;
 }
 
-.btnReplay:hover, .sort:hover, .button-bold:hover, .button:hover{
+.btnReplay:hover,
+.sort:hover,
+.button-bold:hover,
+.button:hover {
   cursor: pointer;
   color: #801208;
 }
 
 .kbd-navigation .square:focus {
-    background: #ddd;
+  background: #ddd;
 }
-    
+
 .game {
   display: flex;
   flex-direction: row;
@@ -103,15 +110,15 @@ body {
   align-content: stretch;
 }
 
-li{
+li {
   margin: 3px 0px;
 }
 
-ol{
+ol {
   color: #d11401;
 }
 
-.bold{
+.bold {
   font-weight: bold;
 }
 
@@ -136,16 +143,30 @@ ol{
   width: 175px;
 }
 
-.win {
-    background-color: rgb(116, 230, 116);
+.linkBack {
+  text-align: center;
+  background-color: rgb(116, 230, 116);
+  color: #d11401;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  border-radius: 25px;
+  /* width: 175px; */
+  margin: 30px 20px 0px 20px;
+  font-size: 2em;
+  font-weight: bold;
+  padding: 5px 20px;
+  border: 2px solid rgb(13, 175, 13);
 }
 
-.center{
+.win {
+  background-color: rgb(116, 230, 116);
+}
+
+.center {
   text-align: center;
   margin-top: 5px;
 }
 
-.sort{
+.sort {
   background-color: rgb(116, 230, 116);
   color: #d11401;
   font-family: "Comic Sans MS", cursive, sans-serif;
@@ -154,29 +175,31 @@ ol{
   padding: 2px 10px;
   font-weight: bold;
 }
- 
-.scrollbar{
+
+.scrollbar {
   height: 300px;
   overflow-y: scroll;
 }
 
-#style-13::-webkit-scrollbar-track{
-	-webkit-box-shadow: inset 0 0 6px rgba(109, 103, 103, 0.9);
-	border-radius: 25px;
-	background-color: #ffffff;
+#style-13::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(109, 103, 103, 0.9);
+  border-radius: 25px;
+  background-color: #ffffff;
 }
 
-#style-13::-webkit-scrollbar{
+#style-13::-webkit-scrollbar {
   width: 8px;
-	background-color: #ffffff;
+  background-color: #ffffff;
 }
 
-#style-13::-webkit-scrollbar-thumb{
-	border-radius: 25px;
-	background-color: #d11401;
-	background-image: -webkit-linear-gradient(90deg,
-											  transparent,
-                        rgba(109, 103, 103, 0.9) 50%,
-											  transparent,
-											  transparent)
+#style-13::-webkit-scrollbar-thumb {
+  border-radius: 25px;
+  background-color: #d11401;
+  background-image: -webkit-linear-gradient(
+    90deg,
+    transparent,
+    rgba(109, 103, 103, 0.9) 50%,
+    transparent,
+    transparent
+  );
 }

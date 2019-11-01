@@ -3,6 +3,7 @@ import { Card } from "react-bootstrap";
 import axios from "axios";
 import Resizer from "react-image-file-resizer";
 import { Redirect } from "react-router-dom";
+// import {useAlert} from "react-alert";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheck,
@@ -24,7 +25,6 @@ class ChangeAvatar extends Component {
     });
 
     const reader = new FileReader();
-
     reader.onloadend = () => {
       this.setState({
         imagePreviewUrl: reader.result
@@ -67,9 +67,7 @@ class ChangeAvatar extends Component {
         }
       })
         .then(res => {
-          // eslint-disable-next-line no-alert
-          alert(res.data);
-          // console.log(res);
+          console.log(res);
           localStorage.removeItem("avatar");
           localStorage.setItem("avatar", this.state.imageResize);
           localStorage.setItem("changeAvatarSuccess", "changeAvatarSuccess");
@@ -95,6 +93,8 @@ class ChangeAvatar extends Component {
   };
 
   render() {
+    // const alert = useAlert();
+
     const user = localStorage.getItem("fullname");
     if (!user) {
       return <Redirect to="/" />;
@@ -111,7 +111,7 @@ class ChangeAvatar extends Component {
     if (this.state.imagePreviewUrl) {
       $imagePreview = (
         <div className="image-container">
-          <img src={this.state.imagePreviewUrl} alt="icon" width="300" /> 
+          <img src={this.state.imagePreviewUrl} alt="icon" width="300" />
         </div>
       );
     }
@@ -129,6 +129,7 @@ class ChangeAvatar extends Component {
               name="avatar"
               id="file"
               onChange={this.fileChangedHandler}
+              accept="image/*"
             />
             <label htmlFor="file">
               <FontAwesomeIcon icon={faCloudUploadAlt} /> Chọn ảnh
@@ -139,11 +140,11 @@ class ChangeAvatar extends Component {
           <div className="imgPrev">{$imagePreview}</div>
           <a href="/profile">
             <button type="button" className="btnPrev">
-              <FontAwesomeIcon icon={faBackward} /> Trở về 
+              <FontAwesomeIcon icon={faBackward} /> Trở về
             </button>
           </a>
           <button type="button" className="btnUpload" onClick={this.submit}>
-            <FontAwesomeIcon icon={faCheck} /> Lưu 
+            <FontAwesomeIcon icon={faCheck} /> Lưu
           </button>
         </div>
       </Card>
