@@ -18,32 +18,4 @@
     text-align: center;
     margin-top: 10px;
   }
-
-  .iconGG {
-    background-color: #cc3e2f;
-    border: white;
-    font-size: 2em;
-    color: white;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    margin-left: 5px;
-  }
-  .iconFB {
-    background-color: #4c66a4;
-    border: white;
-    font-size: 2em;
-    color: white;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    margin-right: 5px;
-  }
-
-  .iconFB:hover {
-    background-color: #2c3a5f;
-  }
-  .iconGG:hover {
-    background-color: #982f23;
-  }
 }

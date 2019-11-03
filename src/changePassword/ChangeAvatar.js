@@ -96,7 +96,7 @@ class ChangeAvatar extends Component {
     // const alert = useAlert();
 
     const user = localStorage.getItem("fullname");
-    if (!user) {
+    if (!user || localStorage.getItem("id") === "0") {
       return <Redirect to="/" />;
     }
     const check = localStorage.getItem("changeAvatarSuccess");

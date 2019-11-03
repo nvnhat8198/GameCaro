@@ -1,0 +1,35 @@
+.iconFB {
+  background-color: #4c66a4;
+  border: white;
+  font-size: 2em;
+  color: white;
+  border-radius: 2px;
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px,
+    rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+}
+
+.iconFB:hover {
+  background-color: #455581;
+}
+
+.iconGG {
+  background-color: #cc3e2f;
+  border: white;
+  font-size: 2em;
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-left: 5px;
+}
+.iconGG:hover {
+  background-color: #982f23;
+}
+
+.GGFB {
+  display: flex;
+  justify-content: center;
+}

@@ -26,6 +26,10 @@ export default function Profile(props) {
   function validateForm() {
     return email.length > 0 && fullname.length > 0;
   }
+
+  function hiddenElement() {
+    if (localStorage.getItem("id") === "0") return true;
+  }
   const alert = useAlert();
 
   function handleSubmit(event) {
@@ -98,7 +102,7 @@ export default function Profile(props) {
         </div>
         {avatar}
 
-        <div className="link">
+        <div hidden={hiddenElement()} className="link">
           <a href="/changeavatar">
             <FontAwesomeIcon icon={faCogs} /> Đổi Avatar
           </a>
@@ -110,6 +114,7 @@ export default function Profile(props) {
               value={fullname}
               onChange={e => setFullname(e.target.value)}
               type="fullname"
+              readOnly={hiddenElement()}
             />
           </FormGroup>
           <FormLabel>Email</FormLabel>
@@ -118,10 +123,11 @@ export default function Profile(props) {
               value={email}
               onChange={e => setEmail(e.target.value)}
               type="email"
+              readOnly={hiddenElement()}
             />
           </FormGroup>
 
-          <Navbar.Text>
+          <Navbar.Text hidden={hiddenElement()}>
             <a href="/changepassword">
               <FontAwesomeIcon icon={faUserCog} /> Đổi mật khẩu
             </a>
@@ -132,6 +138,7 @@ export default function Profile(props) {
             variant="outline-primary"
             disabled={!validateForm()}
             type="submit"
+            hidden={hiddenElement()}
           >
             Lưu thay đổi
           </Button>

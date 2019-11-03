@@ -62,7 +62,7 @@ export default function ChangePassword(props) {
       });
   }
   const user = localStorage.getItem("fullname");
-  if (!user) {
+  if (!user || localStorage.getItem("id") === "0") {
     return <Redirect to="/" />;
   }
 

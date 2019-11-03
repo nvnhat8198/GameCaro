@@ -9,8 +9,7 @@ import {
 import { Redirect } from "react-router-dom";
 import { useAlert } from "react-alert";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
+import GGFBLogin from "./GGFBLogin";
 import "./Login.css";
 // eslint-disable-next-line import/imports-first
 import "bootstrap-css-only/css/bootstrap.min.css";
@@ -54,50 +53,6 @@ export default function Login(props) {
       });
   }
 
-  function loginFB() {
-    axios({
-      method: "post",
-      url: "http://localhost:3001/auth/facebook/"
-    })
-      .then(res => {
-        // eslint-disable-next-line no-alert
-        alert("Đăng nhập thành công!");
-        console.log(res);
-        console.log(res.data.token);
-        localStorage.setItem("fullname", res.data.user.FullName);
-        localStorage.setItem("email", "Không có");
-        localStorage.setItem("id", res.data.user.ID);
-        // window.location.reload();
-      })
-      .catch(err => {
-        // eslint-disable-next-line no-alert
-        alert.show("Đăng nhập không thành công!");
-        console.log(err);
-      });
-  }
-
-  function loginGG() {
-    // axios({
-    //   method: "get",
-    //   url: "http://localhost:3001/auth/google"
-    // })
-    //   .then(res => {
-    //     // eslint-disable-next-line no-alert
-    //     alert.success("Đăng nhập thành công!");
-    //     console.log(res);
-    //     console.log(res.data.token);
-    //     // localStorage.setItem("fullname", res.data.user.FullName);
-    //     // window.location.reload();
-    //   })
-    //   .catch(err => {
-    //     // eslint-disable-next-line no-alert
-    //     alert.show("Đăng nhập không thành công!");
-    //     console.log(err);
-    //   });
-
-    window.location.href("http://localhost:3001/auth/facebook");
-  }
-
   const user = localStorage.getItem("fullname");
   if (user) {
     return <Redirect to="/" />;
@@ -136,13 +91,7 @@ export default function Login(props) {
           </Button>
         </form>
         <div className="link">
-          <button className="iconFB" onClick={loginFB}>
-            <FontAwesomeIcon icon={faFacebookF} />
-          </button>
-          {/* <a href="http://localhost:3001/auth/facebook/"></a> */}
-          <button className="iconGG" onClick={loginGG}>
-            <FontAwesomeIcon icon={faGoogle} />
-          </button>
+          <GGFBLogin />
         </div>
 
         <div className="link">
