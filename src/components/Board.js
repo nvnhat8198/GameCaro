@@ -13,6 +13,8 @@ class Board extends React.Component {
             winner={this.props.winner}
             rowIdx={rowIdx}
             row={row}
+            squaresCheck={this.props.squaresCheck}
+            next={this.props.next}
             onClick={this.props.onClick}
           />
         );

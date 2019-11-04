@@ -43,47 +43,6 @@ const reducer = (state = initialState, action) => {
       }
       squares[action.rowIndex][action.columnIndex] = state.xIsNext ? "X" : "O";
 
-      // squares[action.rowIndex][action.columnIndex] = "X";
-      // state.history = state.history.concat([
-      //   {
-      //     squares,
-      //     location: {x: action.rowIndex, y: action.columnIndex }
-      //   }
-      // ]);
-      // state.stepNumber = state.history.length;
-      // state.xIsNext = false;
-      // state.isDescending = state.isDescending;
-      // console.log(state.history)
-      // while(1){
-      // const rIdx = Math.floor( Math.random() * height);
-      // const cIdx = Math.floor( Math.random() * width);
-      // if(!squares[rIdx][cIdx]){
-      //   // xIsNext = !state.xIsNext;
-      //   squares[rIdx][cIdx] = "O";
-
-      //   state.history = state.history.concat([
-      //     {
-      //       squares,
-      //       location: {x: rIdx, y: cIdx }
-      //     }
-      //   ]);
-      //   state.stepNumber = state.history.length;
-      //   state.xIsNext = false;
-      //   state.isDescending = state.isDescending;
-      //   console.log(state.history.length)
-
-      //   break;
-      // }
-      //           if (calculateWinner(squares)){
-      //           return {
-      //             ...state
-      //           };
-      //         }
-      // }
-      // return {
-      //               state
-      //             };
-
       return {
         ...state,
         history: history.concat([

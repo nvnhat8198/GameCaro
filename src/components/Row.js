@@ -6,6 +6,7 @@ const squareWin = 5;
 // eslint-disable-next-line no-unused-vars
 class Row extends React.Component {
   render() {
+    const { squaresCheck, next } = this.props;
     const row = this.props.row.map((square, colIdx) => {
       let win = false;
       // eslint-disable-next-line react/destructuring-assignment
@@ -50,7 +51,9 @@ class Row extends React.Component {
         <Square
           win={win}
           value={square}
-          onClick={() => this.props.onClick(this.props.rowIdx, colIdx)}
+          onClick={() =>
+            this.props.onClick(this.props.rowIdx, colIdx, squaresCheck, next)
+          }
         />
       );
     });

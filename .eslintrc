@@ -4,6 +4,8 @@
   "rules": {
       "no-console": "off",
       "no-undef": 0,
+      "no-nested-ternary": 0,
+      "no-lonely-if": 0,
       "react/prefer-stateless-function": "off",
       "react/destructuring-assignment": 0,
       "react/no-access-state-in-setstate": 0,

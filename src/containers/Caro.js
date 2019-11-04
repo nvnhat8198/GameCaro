@@ -7,7 +7,16 @@ import {
   faSort,
   faBackward
 } from "@fortawesome/free-solid-svg-icons";
-import { makeMove, undoMove, restartGame, sort } from "../actions";
+import {
+  makeMove,
+  undoMove,
+  undo,
+  restartGame,
+  restart,
+  sort,
+  sortStep,
+  placeAndProceed
+} from "../actions";
 
 import Moves from "../components/moves";
 import Board from "../components/Board";
@@ -27,10 +36,15 @@ class Caro extends React.Component {
       current,
       stepNumber,
       isDescending,
-      makeMove,
-      restartGame,
-      sort,
-      undoMove
+      xIsNext,
+      // makeMove,
+      // restartGame,
+      restart,
+      // sort,
+      sortStep,
+      // undoMove,
+      undo,
+      placeAndProceed
     } = this.props;
     return (
       <div className="content">
@@ -44,7 +58,8 @@ class Caro extends React.Component {
                 <button
                   type="button"
                   className="btnReplay"
-                  onClick={restartGame}
+                  // onClick={restartGame}
+                  onClick={restart}
                 >
                   <FontAwesomeIcon icon={faSyncAlt} /> Chơi lại
                 </button>
@@ -60,7 +75,10 @@ class Caro extends React.Component {
             <div className="game-board">
               <Board
                 squares={current}
-                onClick={(i, j) => makeMove(i, j)}
+                squaresCheck={current}
+                next={xIsNext}
+                onClick={placeAndProceed}
+                // onClick={(i, j) => makeMove(i, j)}
                 winner={winner}
               />
             </div>
@@ -69,7 +87,12 @@ class Caro extends React.Component {
             <div className="scrollbar" id="style-13">
               <div className="game-info">
                 <div className="center">
-                  <button type="button" className="sort" onClick={sort}>
+                  <button
+                    type="button"
+                    className="sort"
+                    // onClick={sort}
+                    onClick={sortStep}
+                  >
                     Danh sách nước đi <FontAwesomeIcon icon={faSort} />
                   </button>
                 </div>
@@ -78,7 +101,9 @@ class Caro extends React.Component {
                     history={history}
                     stepNumber={stepNumber}
                     isDescending={isDescending}
-                    onClick={move => undoMove(move)}
+                    onClick={undo}
+                    squaresCheck={current}
+                    // onClick={move => undoMove(move)}
                   />
                 </ol>
               </div>
@@ -259,12 +284,22 @@ function support(state) {
   const winner = calculateWinner(current);
   let status;
   let notification;
-  if (winner) {
+  if (winner && state.reducer.xIsNext) {
     status = `${winner.value}`;
-    notification = "Người thắng";
+    notification = "Máy thắng";
+  } else if (winner && !state.reducer.xIsNext) {
+    status = `${winner.value}`;
+    notification = "Bạn thắng";
   } else {
-    status = `${state.reducer.xIsNext ? "X" : "O"}`;
-    notification = "Lượt của bạn";
+    if (state.reducer.xIsNext) {
+      status = "X";
+      notification = "Lượt của bạn";
+    } else {
+      status = "0";
+      notification = "Lượt của máy";
+    }
+    // status = `${state.reducer.xIsNext ? "X" : "O"}`;
+    // notification = "Lượt của bạn";
   }
   return { status, notification, winner };
 }
@@ -276,11 +311,13 @@ const mapStateToProps = state => ({
   winner: support(state).winner,
   current: state.reducer.history[state.reducer.stepNumber].squares,
   stepNumber: state.reducer.stepNumber,
-  isDescending: state.reducer.isDescending
+  isDescending: state.reducer.isDescending,
+  xIsNext: state.reducer.xIsNext
 });
 
 const mapDispatchToProps = dispatch => ({
   makeMove: (rowIndex, columnIndex) =>
+    // placeAndProceed(rowIndex, columnIndex),
     dispatch(makeMove(rowIndex, columnIndex)),
   restartGame: () => dispatch(restartGame()),
   sort: () => dispatch(sort()),
@@ -289,5 +326,6 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  // mapDispatchToProps,
+  { placeAndProceed, restart, sortStep, undo }
 )(Caro);

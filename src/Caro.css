@@ -139,7 +139,7 @@ ol {
   border: 2px solid rgb(13, 175, 13);
   border-radius: 25px;
   padding: 2px 0px;
-  /* font-weight: bold; */
+  font-weight: bold;
   width: 175px;
 }
 
