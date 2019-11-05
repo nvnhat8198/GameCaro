@@ -31,7 +31,8 @@ export default function ChangePassword(props) {
     event.preventDefault();
     axios({
       method: "post",
-      url: "http://localhost:3001/changepassword",
+      url: "https://apicaroonline-1612457.herokuapp.com/changepassword",
+      // url: "http://localhost:3001/changepassword",
       data: {
         ID: localStorage.getItem("id"),
         CurPassword: curPassword,

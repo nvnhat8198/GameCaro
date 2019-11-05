@@ -36,7 +36,8 @@ export default function Profile(props) {
     event.preventDefault();
     axios({
       method: "post",
-      url: "http://localhost:3001/changeinfo",
+      url: "https://apicaroonline-1612457.herokuapp.com/changeinfo",
+      // url: "http://localhost:3001/changeinfo",
       data: {
         ID: localStorage.getItem("id"),
         FullName: fullname,

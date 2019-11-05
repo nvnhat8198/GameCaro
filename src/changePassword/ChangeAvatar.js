@@ -51,16 +51,12 @@ class ChangeAvatar extends Component {
   };
 
   submit = () => {
-    // var fd = new FormData();
-    // fd.append('file', this.state.selectedFile);
-    // var request = new XMLHttpRequest();
-
     console.log(this.state.imageResize);
-
     if (this.state.imageResize !== null && this.state.imageResize !== "") {
       axios({
         method: "post",
-        url: "http://localhost:3001/changeavatar",
+        url: "https://apicaroonline-1612457.herokuapp.com/changeavatar",
+        // url: "http://localhost:3001/changeavatar",
         data: {
           ID: localStorage.getItem("id"),
           Avatar: this.state.imageResize
@@ -82,14 +78,6 @@ class ChangeAvatar extends Component {
       // eslint-disable-next-line no-alert
       alert("Xin mời chọn ảnh làm Avatar!");
     }
-
-    // request.onreadystatechange = function() {
-    //   if (this.readyState === 4 && this.status === 200) {
-    //     alert('Uploaded!');
-    //   }
-    // };
-    // request.open("POST", "https://us-central1-tutorial-e6ea7.cloudfunctions.net/fileUpload", true);
-    // request.send(fd);
   };
 
   render() {
@@ -122,7 +110,6 @@ class ChangeAvatar extends Component {
           <div className="titleLogin">
             <label className="titleLogin">Thay Avatar</label>
           </div>
-          {/* <input type="file" className="custom-input"  name="avatar" onChange={this.fileChangedHandler} /> */}
           <p className="file">
             <input
               type="file"
